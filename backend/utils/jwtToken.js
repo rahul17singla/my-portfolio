@@ -3,7 +3,9 @@ export const generateToken = (user, message, statusCode, res) => {
   res
     .status(statusCode)
     .cookie("token", token, {
-      maxAge:  process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000,
+      expiresIn: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
       httpOnly: true,
       sameSite: "none",
       path: "/",

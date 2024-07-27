@@ -10,6 +10,7 @@ const Contact = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,6 +35,15 @@ const Contact = () => {
         setLoading(false);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="overflow-x-hidden">
@@ -49,8 +59,10 @@ const Contact = () => {
             CONTACT
             <span className="text-tubeLight-effect font-extrabold">ME</span>
           </h1>
-          <span className="absolute w-full h-1 top-7 sm:top-7 
-          md:top-8 lg:top-11 z-[-1] bg-slate-200"></span>
+          <span
+            className="absolute w-full h-1 top-7 sm:top-7 
+          md:top-8 lg:top-11 z-[-1] bg-slate-200"
+          ></span>
         </div>
         <form onSubmit={handleMessage} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2 px-1.5">

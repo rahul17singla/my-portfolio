@@ -14,8 +14,9 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 2000);
   }, []);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -23,7 +24,7 @@ function App() {
       </div>
     );
   }
-  
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>

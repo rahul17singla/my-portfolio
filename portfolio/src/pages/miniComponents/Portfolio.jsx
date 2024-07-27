@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 const Portfolio = () => {
   const [viewAll, setViewAll] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMyProjects = async () => {
       const { data } = await axios.get(
@@ -16,7 +18,17 @@ const Portfolio = () => {
       setProjects(data.projects);
     };
     getMyProjects();
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="relative mb-12">

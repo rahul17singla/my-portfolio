@@ -14,6 +14,7 @@ const ProjectView = () => {
   const [projectLink, setProjectLink] = useState("");
   const [projectBannerPreview, setProjectBannerPreview] = useState("");
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getProject = async () => {
@@ -38,6 +39,7 @@ const ProjectView = () => {
         });
     };
     getProject();
+    setLoading(false);
   }, [id]);
 
   const descriptionList = description.split(". ");
@@ -52,6 +54,14 @@ const ProjectView = () => {
     return (
       <div className="flex justify-center items-center min-h-[100vh] text-2xl">
         Wrong URL
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
       </div>
     );
   }

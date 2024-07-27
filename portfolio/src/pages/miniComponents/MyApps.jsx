@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 const MyApps = () => {
   const [apps, setApps] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMyApps = async () => {
       const { data } = await axios.get(
@@ -13,7 +15,17 @@ const MyApps = () => {
       setApps(data.softwareApplications);
     };
     getMyApps();
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col gap-8 sm:gap-12">
       <h1 className="text-tubeLight-effect text-[2rem] sm:text-[2.75rem] md:text-[3rem] lg:text-[3.8rem] tracking-[15px] dancing_text mx-auto w-fit">

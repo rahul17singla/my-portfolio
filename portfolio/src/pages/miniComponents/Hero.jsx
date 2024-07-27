@@ -15,6 +15,8 @@ import axios from "axios";
 
 const Hero = () => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMyProfile = async () => {
       const { data } = await axios.get(
@@ -22,9 +24,20 @@ const Hero = () => {
         { withCredentials: true }
       );
       setUser(data.user);
+      setLoading(false);
     };
     getMyProfile();
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
       <h1

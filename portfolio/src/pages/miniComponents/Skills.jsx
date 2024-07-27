@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMySkills = async () => {
       const { data } = await axios.get(
@@ -13,7 +15,17 @@ const Skills = () => {
       setSkills(data.skills);
     };
     getMySkills();
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col gap-8 sm:gap-12">
       <h1

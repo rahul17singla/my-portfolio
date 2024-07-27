@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 
 const Timeline = () => {
   const [timeline, setTimeline] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMyTimeline = async () => {
       const { data } = await axios.get(
@@ -12,7 +14,17 @@ const Timeline = () => {
       setTimeline(data.timelines);
     };
     getMyTimeline();
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-red-900"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">

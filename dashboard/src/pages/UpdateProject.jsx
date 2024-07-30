@@ -189,23 +189,12 @@ const UpdateProject = () => {
                   </label>
                   <div className="mt-2">
                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                      <Select
+                      <input
                         value={stack}
-                        onValueChange={(selectedValue) =>
-                          setStack(selectedValue)
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Project Stack" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Full Stack">Full Stack</SelectItem>
-                          <SelectItem value="Mern">MERN</SelectItem>
-                          <SelectItem value="Mean">MEAN</SelectItem>
-                          <SelectItem value="Next.JS">NEXT.JS</SelectItem>
-                          <SelectItem value="React.JS">REACT.JS</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                        onChange={(e) => setStack(e.target.value)}
+                        placeholder="Enter Project Stack"
+                      />
                     </div>
                   </div>
                 </div>

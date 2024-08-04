@@ -27,7 +27,6 @@ const Hero = () => {
       setLoading(false);
     };
     getMyProfile();
-    setLoading(false);
   }, []);
 
   if (loading) {
